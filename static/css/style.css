@@ -1,0 +1,5 @@
+/* Navigation */
+
+.custom-nav li:not(:last-child) {
+    margin: 0px 5px 5px 5px;
+  }
