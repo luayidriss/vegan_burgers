@@ -17,16 +17,18 @@
         <div class="d-flex justify-content-start">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 custom-nav">
             <li class="nav-item mr-2">
-              <img src="https://res.cloudinary.com/dfo9w2bsp/image/upload/v1691318674/Vegan%20Burgers/Beesechurgers_favicon_menu_b3sc43.png" alt="Vegan Burgers Logo">
+              <a href="{% url 'get_index' %}">
+                <img src="https://res.cloudinary.com/dfo9w2bsp/image/upload/v1691318674/Vegan%20Burgers/Beesechurgers_favicon_menu_b3sc43.png" alt="Vegan Burgers Logo">
+              </a>
             </li>
             <li class="nav-item mr-5">
-              <a>Menu</a>
+              <a href="{% url 'get_menu' %}">Menu</a>
             </li>
             <li class="nav-item mr-5">
               <a>Log Out</a>
             </li>
             <li class="nav-item mr-5">
-              <a>Reservations</a>
+              <a href="{% url 'get_reservation' %}">Reservations</a>
             </li>
             <li class="nav-item mr-5">
               <a>Sign In</a>

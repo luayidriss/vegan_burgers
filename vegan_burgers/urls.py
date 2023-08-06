@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from reservation.views import get_index
+from reservation.views import get_index, get_menu, get_reservation
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', get_index, name="get_index")
+    path('', get_index, name="get_index"),
+    path('menu/', get_menu, name="get_menu"),
+    path('reservation/', get_reservation, name="get_reservation"),
 ]
