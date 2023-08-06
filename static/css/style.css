@@ -1,10 +1,39 @@
 /* Navigation */
 
-.custom-nav li:not(:last-child) {
-    margin: 0px 5px 5px 5px;
-  }
+.navbar {
+  padding: 1rem 0;
+}
 
-  /* Hero Image */
+.navbar .nav-link {
+  color: white;
+}
+
+.logo-img {
+  max-height: 50px;
+}
+
+.custom-nav {
+  display: flex;
+  align-items: center;
+  background-color: #282828;
+}
+
+.custom-nav .nav-item {
+  margin-right: 1.5rem;
+}
+
+.custom-nav .btn {
+  margin-left: 1.5rem;
+}
+
+/* Footer */
+footer {
+  background-color: #282828;
+  padding: 2rem 0 0 0;
+  color: white;
+}
+
+/* Hero Image */
 
   .hero-image {
     background-image: url("https://res.cloudinary.com/dfo9w2bsp/image/upload/v1691319685/Vegan%20Burgers/pexels-daniel-reche-1556688_sjxkmj.jpg");
@@ -13,6 +42,6 @@
     background-position: center;
     background-position-y: 65%;
     height: 30vw;
-    opacity: 0.7;
+    opacity: 0.9;
     color: white
   }
