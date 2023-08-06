@@ -3,3 +3,16 @@
 .custom-nav li:not(:last-child) {
     margin: 0px 5px 5px 5px;
   }
+
+  /* Hero Image */
+
+  .hero-image {
+    background-image: url("https://res.cloudinary.com/dfo9w2bsp/image/upload/v1691319685/Vegan%20Burgers/pexels-daniel-reche-1556688_sjxkmj.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-position-y: 65%;
+    height: 30vw;
+    opacity: 0.7;
+    color: white
+  }
