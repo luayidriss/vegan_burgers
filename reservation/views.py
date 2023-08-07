@@ -8,10 +8,6 @@ def get_index(request):
 def get_menu(request):
     return render(request, "menu.html")
 
-def get_reservation(request):
-    return render(request, "reservation.html")
-
-@login_required
 def reservations_view(request):
     reservations = Reservation.objects.filter(user=request.user)
     context = {
