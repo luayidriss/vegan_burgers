@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Reservation
 from .forms import ReservationForm
@@ -28,4 +28,19 @@ def make_reservation(request):
         form = ReservationForm()
 
     return render(request, 'add_reservation.html', {'form': form})
+
+def edit_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance=reservation)
+        if form.is_valid():
+            form.save()
+            return redirect('reservations_view')
+
+    else:
+        form = ReservationForm(instance=reservation)
+
+    context = {'form': form}
+    return render(request, 'edit_reservation.html', context)
 
