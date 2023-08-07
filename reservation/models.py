@@ -9,7 +9,7 @@ class Reservation(models.Model):
     guests = models.PositiveIntegerField()
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['date']
 
     def __str__(self):
         return f"{self.user.username} - {self.date} {self.time} - {self.guests}"

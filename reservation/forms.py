@@ -1,5 +1,6 @@
 from allauth.account.forms import SignupForm
 from django import forms
+from .models import Reservation
 
 class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
@@ -15,3 +16,8 @@ class CustomSignupForm(SignupForm):
     def save(self, request):
         user = super().save(request)
         return user
+
+class ReservationForm(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        fields = ['date', 'time', 'guests']
