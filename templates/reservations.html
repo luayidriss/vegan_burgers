@@ -26,11 +26,36 @@
                                 <button class="btn btn-primary">Edit</button>
                             </a>
                         </td>
-                          <td></td>
+                        <td>
+                          <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal{{ reservation.id }}">Cancel</button>
+                      </td>
                       </tr>
                     {% endfor %}
               </tbody>
           </table>
+          
+          {% for reservation in reservations %}
+            <div class="modal fade" id="cancelModal{{ reservation.id }}" tabindex="-1" aria-labelledby="cancelModalLabel{{ reservation.id }}" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="cancelModalLabel{{ reservation.id }}" style="color: black">
+                          Confirm Cancellation
+                          </h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <form method="post" action="{% url 'cancel_reservation' reservation.id %}">
+                              {% csrf_token %}
+                              <p style="color: black">Are you sure you want to cancel this reservation?</p>
+                              <button type="submit" class="btn btn-danger">Cancel Reservation</button>
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          {% endfor %}
       {% else %}
           <p>You have no reservations yet.</p>
       {% endif %}

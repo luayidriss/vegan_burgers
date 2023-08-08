@@ -44,3 +44,12 @@ def edit_reservation(request, reservation_id):
     context = {'form': form}
     return render(request, 'edit_reservation.html', context)
 
+def cancel_reservation(request, reservation_id):
+    reservation = get_object_or_404(Reservation, id=reservation_id)
+
+    if request.method == 'POST':
+        reservation.delete()
+        return redirect('reservations_view')
+
+    return redirect('reservations_view')
+
