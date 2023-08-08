@@ -27,7 +27,7 @@ def make_reservation(request):
     else:
         form = ReservationForm()
 
-    return render(request, 'add_reservation.html', {'form': form})
+    return render(request, 'make_reservation.html', {'form': form})
 
 def edit_reservation(request, reservation_id):
     reservation = get_object_or_404(Reservation, id=reservation_id)

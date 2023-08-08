@@ -22,7 +22,7 @@ urlpatterns = [
     path('', get_index, name="get_index"),
     path('menu/', get_menu, name="get_menu"),
     path('reservations/', reservations_view, name='reservations_view'),
-    path('add-reservation/', make_reservation, name='make_reservation'),
+    path('make-reservation/', make_reservation, name='make_reservation'),
     path('edit-reservation/<int:reservation_id>/,', edit_reservation, name='edit_reservation'),
     path('accounts/', include('allauth.urls')),
 
