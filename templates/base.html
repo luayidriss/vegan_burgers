@@ -7,18 +7,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg custom-nav">
-      <div class="container custom-nav">
+      <div class="container">
         <a class="navbar-brand" href="{% url 'get_index' %}">
           <img src="https://res.cloudinary.com/dfo9w2bsp/image/upload/v1691318674/Vegan%20Burgers/Beesechurgers_favicon_menu_b3sc43.png" alt="Vegan Burgers Logo" class="logo-img">
         </a>
     
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 custom-nav">
             <li class="nav-item">
@@ -46,11 +49,10 @@
       </div>
     </nav>
 
-    <main class="flex-shrink-0 main-bg custom-main">
-
-        {% block content %}
-        <!-- Content Goes here -->
-        {% endblock content %}
+    <main class="flex-grow-1 main-bg custom-main">
+            {% block content %}
+            <!-- Content Goes here -->
+            {% endblock content %}
     </main>
 
     <!-- Footer -->
@@ -77,11 +79,11 @@
         </div>
         <div class="row">
           <div class="col d-flex justify-content-center align-items-center">
-            <p>© 2023 Vegan Burgers</p>
+            <p class="text-white">© 2023 Vegan Burgers</p>
           </div>
         </div>
       </div>
     </footer>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

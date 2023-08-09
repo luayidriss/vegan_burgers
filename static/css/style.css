@@ -1,14 +1,14 @@
-body{
+body {
   background-color: #282828;
 }
 
 /* Navigation */
 
-.navbar {
-  padding: 1rem 0;
+.custom-nav {
+  background-color: #282828;
 }
 
-.navbar .nav-link {
+.custom-nav .navbar-nav .nav-link {
   color: white;
 }
 
@@ -30,10 +30,22 @@ body{
   margin-left: 1.5rem;
 }
 
+.navbar-toggler{
+  background-color: white;
+}
+
+.custom-nav .navbar-collapse:not(.show) {
+  height: 10vh;
+}
+.custom-nav .navbar-collapse.show {
+  height: auto;
+}
+
 /* Footer */
 footer {
-  padding: 2rem 0 0 0;
+  padding: 1rem 0;
   color: white;
+  height: 30vh;
 }
 
 /* Hero Image */
@@ -44,14 +56,17 @@ footer {
     background-size: cover;
     background-position: center;
     background-position-y: 65%;
-    height: 30vw;
     opacity: 0.9;
-    color: white
+    height: 100%;
+    color: white;
+    overflow-x: hidden;
   }
 
-  /* Menu Page */
+  /* Main */
 
   .custom-main {
     color: white;
+    height: 60vh;
+    overflow-y: auto;
   }
 
