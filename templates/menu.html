@@ -1,25 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
-  <div class="col-md-6 offset-md-3">
-    <h2 class="text-center">Menu</h2>
-  </div>
-<div class="row">
-  {% for category, items in menu_items_by_category.items %}
-  <div class="col-md-3">
-    <h3>{{ category }}</h3>
-    {% for item in items %}
-    <div class="menu-item">
-      <img src="{{ item.item_image.url }}" alt="{{ item.name }}">
-      <h4>{{ item.name }}</h4>
-      <p>{{ item.description }}</p>
-      <p class="text-primary">€{{ item.price }}</p>
+  <div class="container">
+    <h2 class="text-center mt-4">Menu</h2>
+    <div class="row">
+      {% for category, items in menu_items_by_category.items %}
+      <div class="col-md-4">
+        <h3 class="mt-4">{{ category }}</h3>
+        <div class="menu-items">
+          {% for item in items %}
+          <div class="menu-item card">
+            <img class="card-img-top menu-itm-img" src="{{ item.item_image.url }}" alt="{{ item.name }}">
+            <div class="card-body menu-itm-content">
+              <h5 class="card-title">{{ item.name }}</h5>
+              <p class="card-text">{{ item.description }}</p>
+              <p class="text-primary">€{{ item.price }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
-  {% endfor %}
-</div>
-
-</div>
 {% endblock content %}
