@@ -5,11 +5,11 @@
     <h2 class="text-center mt-4">Menu</h2>
     <div class="row">
       {% for category, items in menu_items_by_category.items %}
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h3 class="mt-4">{{ category }}</h3>
         <div class="menu-items">
           {% for item in items %}
-          <div class="menu-item card">
+          <div class="menu-item card mb-4">
             <div class="card-img-top menu-img-container">
               <img class="menu-itm-img" src="{{ item.item_image.url }}" alt="{{ item.name }}">
             </div>
