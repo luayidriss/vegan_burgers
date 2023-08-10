@@ -107,10 +107,6 @@ footer {
 
 /* Reservations Page */
 
-.my-reservations{
-  min-height: 60vh;
-}
-
 .modal-body, .modal-header{
   color: black;
 }

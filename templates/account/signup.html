@@ -1,27 +1,32 @@
 {% extends "base.html" %}
 
-{% load i18n %}
-
-{% block head_title %}{% trans "Signup" %}{% endblock %}
-
 {% block content %}
-
-<div class="row">
-  <div class="col-md-6 offset-md-4">
-    <div class="signup-form">
-      <h1>{% trans "Sign Up" %}</h1>
-      <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-      <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-      </form>
+<div class="container">
+    <div class="row justify-content-center m-5">
+        <div class="col-md-6">
+            <form class="signup-form border rounded p-4" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                <h2 class="text-center mb-4">Sign Up</h2>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="{{ form.username.id_for_label }}" class="form-label">{{ form.username.label }}</label>
+                    {{ form.username }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
+                    {{ form.email }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.password1.id_for_label }}" class="form-label">{{ form.password1.label }}</label>
+                    {{ form.password1 }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.password2.id_for_label }}" class="form-label">{{ form.password2.label }}</label>
+                    {{ form.password2 }}
+                </div>
+                <p>Already have an account? Then please <a href="{% url 'account_login' %}">sign in</a>.</p>
+                <button class="primaryAction" type="submit">Sign Up</button>
+            </form>
+        </div>
     </div>
-  </div>
 </div>
-
-{% endblock %}
+{% endblock content %}
