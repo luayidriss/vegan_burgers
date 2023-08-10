@@ -57,7 +57,7 @@ footer {
     background-position: center;
     background-position-y: 65%;
     opacity: 0.9;
-    height: 100%;
+    height: 60vh;
     color: white;
     overflow-x: hidden;
   }
@@ -66,7 +66,7 @@ footer {
 
   .custom-main {
     color: white;
-    height: 60vh;
+    height: auto;
     overflow-y: visible;
   }
 
@@ -75,28 +75,33 @@ footer {
 .menu-items {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .menu-item {
-  width: 80%; 
-  height: 100%;
-  display: flex;
+  width: 70%; 
+  height: 40vh;
   flex-direction: column;
+  font-size: 0.75rem;
 }
-
+.menu-img-container{
+  height: 50%;
+  width: 100%;
+}
 .menu-itm-img {
-  flex: 3;
   background-size: contain;
   background-position: center;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .menu-itm-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+  height: 50%;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
