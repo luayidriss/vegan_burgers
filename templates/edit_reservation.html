@@ -1,14 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-6 offset-md-5">
-            <h2>Edit Reservation</h2>
-            <form method="post">
+<div class="container make_reservation">
+    <div class="row justify-content-center m-5 reservation-form">
+        <div class="col-md-6">
+            <form method="post" class="border rounded p-4">
+                <h2 class="text-center mb-4">Edit Reservation</h2>
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Make Reservation</button>
+                <div class="mb-3">
+                    <label for="{{ form.date.id_for_label }}" class="form-label">Date</label>
+                    {{ form.date }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.time.id_for_label }}" class="form-label">Time</label>
+                    {{ form.time }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.guests.id_for_label }}" class="form-label">Number of Guests</label>
+                    {{ form.guests }}
+                </div>
+                <button type="submit" class="btn btn-primary">Edit Reservation</button>
             </form>
         </div>
     </div>
+</div>
 {% endblock content %}

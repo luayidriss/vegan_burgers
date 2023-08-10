@@ -1,5 +1,5 @@
 body {
-  background-color: #282828;
+  background-color: #333333;
 }
 
 /* Navigation */
@@ -46,6 +46,7 @@ footer {
   padding: 1rem 0;
   color: white;
   height: 30vh;
+  background-color: #282828;
 }
 
 /* Hero Image */
@@ -66,7 +67,7 @@ footer {
 
   .custom-main {
     color: white;
-    height: auto;
+    min-height: 55vh;
     overflow-y: visible;
   }
 
@@ -104,8 +105,13 @@ footer {
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  .menu-itm-img {
-    flex: 2; 
-  }
+/* Reservations Page */
+
+.my-reservations{
+  min-height: 60vh;
 }
+
+.modal-body, .modal-header{
+  color: black;
+}
+
