@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container add-menu-item">
+    <div class="row justify-content-center m-5 reservation-form">
+        <div class="col-md-6">
+            <form method="post" class="border rounded p-4">
+                <h2 class="text-center mb-4">Add Menu Item</h2>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="{{ form.category.id_for_label }}" class="form-label">Menu Category</label>
+                    {{ form.category }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.name.id_for_label }}" class="form-label">Menu Item Name</label>
+                    {{ form.name }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.description.id_for_label }}" class="form-label">Menu Item Description</label>
+                    {{ form.description }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.price.id_for_label }}" class="form-label">Menu Item Price</label>
+                    {{ form.price }}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.item_image.id_for_label }}" class="form-label">Menu Item Image</label>
+                    {{ form.item_image }}
+                </div>
+                <button type="submit" class="btn btn-success">Add Menu Item</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

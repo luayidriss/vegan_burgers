@@ -105,6 +105,12 @@ footer {
   width: 100%;
 }
 
+/*Menu Admin */
+.accordion-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 /* Reservations Page */
 
 .modal-body, .modal-header{
