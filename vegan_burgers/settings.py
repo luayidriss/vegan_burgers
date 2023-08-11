@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import cloudinary
 if os.path.isfile('env.py'):
     import env
 
@@ -31,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-luayidriss-veganburgers-fm3ojtj205g.ws-eu102.gitpod.io',
+    '8000-luayidriss-veganburgers-c5a6nn0qx7h.ws-eu103.gitpod.io',
 ]
 
 
@@ -140,6 +141,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': "dfo9w2bsp",
+    'API_KEY': "394333988756531",
+    'API_SECRET': "k3evIUL39rv0gumPIo-4PnfT2Qk",
+}
 
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
