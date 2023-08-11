@@ -104,3 +104,12 @@ def edit_menu(request, menu_item_id):
 
     context = {'form': form}
     return render(request, 'edit_menu.html', context)
+
+def delete_menu(request, menu_item_id):
+    menu_item = get_object_or_404(Menu_Item, id=menu_item_id)
+
+    if request.method == 'POST':
+        menu_item.delete()
+        return redirect('menu_view_admin')
+
+    return redirect('menu_view_admin')
