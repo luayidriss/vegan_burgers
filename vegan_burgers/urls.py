@@ -27,7 +27,7 @@ urlpatterns = [
     path('cancel-reservation/<int:reservation_id>/', cancel_reservation, name='cancel_reservation'),
     path('menu_admin', menu_view_admin, name='menu_view_admin'),
     path('add_menu_item/', add_menu_item, name='add_menu_item'),
-    path('edit_menu/', edit_menu, name='edit_menu'),
+    path('edit_menu/<int:menu_item_id>/', edit_menu, name='edit_menu'),
     path('accounts/', include('allauth.urls')),
 
 ]

@@ -91,7 +91,7 @@ def add_menu_item(request):
     return render(request, 'add_menu.html', context)
 
 def edit_menu(request, menu_item_id):
-    reservation = get_object_or_404(Menu_Item, id=menu_item_id)
+    menu_item = get_object_or_404(Menu_Item, id=menu_item_id)
 
     if request.method == 'POST':
         form = Menu_ItemForm(request.POST, instance=menu_item)
@@ -103,4 +103,4 @@ def edit_menu(request, menu_item_id):
         form = Menu_ItemForm(instance=menu_item)
 
     context = {'form': form}
-    return render(request, 'edit_reservation.html', context)
+    return render(request, 'edit_menu.html', context)

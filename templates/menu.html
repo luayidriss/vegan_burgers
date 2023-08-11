@@ -3,7 +3,6 @@
 {% block content %}
   <div class="container">
     <h2 class="text-center mt-4">Menu</h2>
-    {% if reservations %}
     <div class="row">
       {% for category, items in menu_items_by_category.items %}
       <div class="col-md-3">
@@ -20,10 +19,10 @@
               <p class="text-primary">€{{ item.price }}</p>
             </div>
           </div>
-          {% endfor %}
+            {% endfor %}
         </div>
       </div>
-      {% endfor %}
+    {% endfor %}
     </div>
   </div>
 {% endblock content %}
