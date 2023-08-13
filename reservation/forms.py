@@ -1,5 +1,6 @@
 from allauth.account.forms import SignupForm
 from django import forms
+from datetime import datetime
 from .models import Reservation, Menu_Item
 
 class CustomSignupForm(SignupForm):
@@ -21,6 +22,12 @@ class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
         fields = ['date', 'time', 'guests']
+    
+    def validate_date(self):
+        date = self.cleaned_data.get('date')
+        if date < datetime.now().date():
+            raise ValidationError("Reservation date must be in the future.")
+        return date
 
 class Menu_ItemForm(forms.ModelForm):
     class Meta:

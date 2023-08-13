@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 from .models import Reservation, Menu_Item
 from .forms import ReservationForm, Menu_ItemForm
 from datetime import datetime, timedelta
@@ -27,6 +28,10 @@ def reservations_view(request):
         'reservations': reservations,
     }
     return render(request, 'reservations.html', context)
+
+def validate_upcoming_date(value):
+    if value < datetime.now().date():
+        raise ValidationError("Reservation date must be in the future.")
 
 def make_reservation(request):
     if request.method == 'POST':
