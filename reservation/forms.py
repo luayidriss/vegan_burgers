@@ -2,6 +2,7 @@ from allauth.account.forms import SignupForm
 from django import forms
 from django.core.exceptions import ValidationError
 from django.db.models import Sum
+from django.forms.widgets import DateInput, TimeInput
 from datetime import datetime, time
 from .models import Reservation, Menu_Item
 
@@ -24,6 +25,10 @@ class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
         fields = ['date', 'time', 'guests']
+        widgets = {
+            'date': DateInput(attrs={'type': 'date'}),
+            'time': TimeInput(attrs={'type': 'time'}),
+        }
     
     def clean_date(self):
         date = self.cleaned_data.get('date')
