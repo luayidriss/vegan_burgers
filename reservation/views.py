@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Reservation, Menu_Item
 from .forms import ReservationForm, Menu_ItemForm
+from datetime import datetime, timedelta
 
 def get_index(request):
     return render(request, "index.html")
@@ -113,3 +114,22 @@ def delete_menu(request, menu_item_id):
         return redirect('menu_view_admin')
 
     return redirect('menu_view_admin')
+
+def admin_reservations(request):
+    now = datetime.now()
+
+    archived_reservations = Reservation.objects.filter(date__gte=now - timedelta(days=30), date__lt=now)
+    previous_reservations = Reservation.objects.filter(date__lt=now - timedelta(days=30))
+    upcoming_reservations = Reservation.objects.filter(date__gte=now)
+
+    reservations_by_category = {
+        'Archived': archived_reservations,
+        'Previous': previous_reservations,
+        'Upcoming': upcoming_reservations,
+    }
+
+    context = {
+        'reservations_by_category': reservations_by_category,
+    }
+
+    return render(request, 'reservations_admin.html', context)
