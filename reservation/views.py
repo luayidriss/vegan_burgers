@@ -123,8 +123,8 @@ def delete_menu(request, menu_item_id):
 def admin_reservations(request):
     now = datetime.now()
 
-    archived_reservations = Reservation.objects.filter(date__gte=now - timedelta(days=30), date__lt=now)
-    previous_reservations = Reservation.objects.filter(date__lt=now - timedelta(days=30))
+    archived_reservations = Reservation.objects.filter(date__lt=now - timedelta(days=30))
+    previous_reservations = Reservation.objects.filter(date__gte=now - timedelta(days=30), date__lt=now)
     upcoming_reservations = Reservation.objects.filter(date__gte=now)
 
     reservations_by_category = {
