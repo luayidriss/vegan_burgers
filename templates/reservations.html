@@ -12,8 +12,7 @@
                         <th>Date</th>
                         <th>Time</th>
                         <th>Number of Guests</th>
-                        <th></th>
-                        <th></th>
+                        <th colspan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,10 +21,8 @@
                         <td>{{ reservation.date }}</td>
                         <td>{{ reservation.time }}</td>
                         <td>{{ reservation.guests }}</td>
-                        <td>
+                        <td colspan="2">
                             <a href="{% url 'edit_reservation' reservation.id %}" class="btn btn-primary">Edit</a>
-                        </td>
-                        <td>
                             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal{{ reservation.id }}">Cancel</button>
                         </td>
                     </tr>

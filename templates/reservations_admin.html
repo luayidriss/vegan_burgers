@@ -11,7 +11,7 @@
                     {{ category }} Reservations
                 </button>
             </h2>
-            <div id="{{ category|slugify }}Reservations" class="accordion-collapse collapse show" aria-labelledby="{{ category|slugify }}ReservationsHeading" data-bs-parent="#reservationsAccordion">
+            <div id="{{ category|slugify }}Reservations" class="accordion-collapse collapse" aria-labelledby="{{ category|slugify }}ReservationsHeading" data-bs-parent="#reservationsAccordion">
                 <div class="accordion-body">
                     <table class="table table-striped">
                         <thead>
@@ -20,6 +20,9 @@
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Guests</th>
+                                {% if category == "Upcoming" %}
+                                <th colspan="2">Actions</th>
+                                {% endif %}
                             </tr>
                         </thead>
                         <tbody>
@@ -29,10 +32,36 @@
                                 <td>{{ reservation.date }}</td>
                                 <td>{{ reservation.time }}</td>
                                 <td>{{ reservation.guests }}</td>
+                                {% if category == "Upcoming" %}
+                                <td colspan="2">
+                                    <a href="{% url 'edit_reservation' reservation.id %}" class="btn btn-primary">Edit</a>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal{{ reservation.id }}">Cancel</button>
+                                </td>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
+                    {% for reservation in reservations %}
+                    <div class="modal fade" id="cancelModal{{ reservation.id }}" tabindex="-1" aria-labelledby="cancelModalLabel{{ reservation.id }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="cancelModalLabel{{ reservation.id }}">Confirm Cancellation</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" action="{% url 'cancel_reservation' reservation.id %}">
+                                        {% csrf_token %}
+                                        <p>Are you sure you want to cancel this reservation?</p>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-danger">Cancel Reservation</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

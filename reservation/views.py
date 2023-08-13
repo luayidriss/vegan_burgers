@@ -29,10 +29,6 @@ def reservations_view(request):
     }
     return render(request, 'reservations.html', context)
 
-def validate_upcoming_date(value):
-    if value < datetime.now().date():
-        raise ValidationError("Reservation date must be in the future.")
-
 def make_reservation(request):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
@@ -48,12 +44,14 @@ def make_reservation(request):
 
 def edit_reservation(request, reservation_id):
     reservation = get_object_or_404(Reservation, id=reservation_id)
-
     if request.method == 'POST':
         form = ReservationForm(request.POST, instance=reservation)
         if form.is_valid():
             form.save()
-            return redirect('reservations_view')
+            if request.user.is_staff:
+                return redirect('admin_reservations')
+            else:
+                return redirect('reservations_view')
 
     else:
         form = ReservationForm(instance=reservation)
@@ -66,9 +64,15 @@ def cancel_reservation(request, reservation_id):
 
     if request.method == 'POST':
         reservation.delete()
-        return redirect('reservations_view')
+        if request.user.is_staff:
+            return redirect('admin_reservations')
+        else:
+            return redirect('reservations_view')
 
-    return redirect('reservations_view')
+    if request.user.is_staff:
+        return redirect('admin_reservations')
+    else:
+        return redirect('reservations_view')
 
 def menu_view_admin(request):
     menu_items_by_category = {}
