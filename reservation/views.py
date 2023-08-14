@@ -47,11 +47,14 @@ def edit_reservation(request, reservation_id):
     if request.method == 'POST':
         form = ReservationForm(request.POST, instance=reservation)
         if form.is_valid():
+            print("VALID!!!!!!!!")
             form.save()
             if request.user.is_staff:
                 return redirect('admin_reservations')
             else:
                 return redirect('reservations_view')
+        else:
+            
 
     else:
         form = ReservationForm(instance=reservation)
@@ -142,3 +145,4 @@ def admin_reservations(request):
     }
 
     return render(request, 'reservations_admin.html', context)
+
