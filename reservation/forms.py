@@ -5,6 +5,7 @@ from django.db.models import Sum
 from django.forms.widgets import DateInput, TimeInput
 from datetime import datetime, time
 from .models import Reservation, Menu_Item
+from django.contrib import messages
 
 class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
@@ -67,8 +68,7 @@ class ReservationForm(forms.ModelForm):
             restaurant_capacity = 40
 
             if total_guests + number_of_guests > restaurant_capacity:
-                raise ValidationError("This reservation exceedes restaurant capacity for that day.")
-                
+                raise ValidationError("This reservation exceedes restaurant capacity for that day.")                
         return number_of_guests
 
 

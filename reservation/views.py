@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from .models import Reservation, Menu_Item
 from .forms import ReservationForm, Menu_ItemForm
 from datetime import datetime, timedelta
+from django.contrib import messages
 
 def get_index(request):
     return render(request, "index.html")
@@ -36,7 +37,12 @@ def make_reservation(request):
             reservation = form.save(commit=False)
             reservation.user = request.user
             reservation.save()
+            messages.success(request, 'Reservation successfully made!')
             return redirect('reservations_view')
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"Error in {field}: {error}")
     else:
         form = ReservationForm()
 
@@ -50,12 +56,15 @@ def edit_reservation(request, reservation_id):
             print("VALID!!!!!!!!")
             form.save()
             if request.user.is_staff:
+                messages.success(request, 'Reservation successfully edited!')
                 return redirect('admin_reservations')
             else:
+                messages.success(request, 'Reservation successfully edited!')
                 return redirect('reservations_view')
         else:
-            
-
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"Error in {field}: {error}")
     else:
         form = ReservationForm(instance=reservation)
 
@@ -68,8 +77,10 @@ def cancel_reservation(request, reservation_id):
     if request.method == 'POST':
         reservation.delete()
         if request.user.is_staff:
+            messages.success(request, 'Reservation successfully cancelled!')
             return redirect('admin_reservations')
         else:
+            messages.success(request, 'Reservation successfully cancelled!')
             return redirect('reservations_view')
 
     if request.user.is_staff:
@@ -98,6 +109,7 @@ def add_menu_item(request):
         if form.is_valid():
             menu_item = form.save(commit=False)
             menu_item.save()
+            messages.success(request, 'Menu Item successfully added!')
             return redirect('menu_view_admin')
 
     context = {'form': form}
@@ -110,6 +122,7 @@ def edit_menu(request, menu_item_id):
         form = Menu_ItemForm(request.POST, instance=menu_item)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Menu Item successfully edited!')
             return redirect('menu_view_admin')
 
     else:
@@ -123,6 +136,7 @@ def delete_menu(request, menu_item_id):
 
     if request.method == 'POST':
         menu_item.delete()
+        messages.success(request, 'Menu Item successfully deleted!')
         return redirect('menu_view_admin')
 
     return redirect('menu_view_admin')
