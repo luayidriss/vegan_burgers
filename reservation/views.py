@@ -5,6 +5,13 @@ from .models import Reservation, Menu_Item
 from .forms import ReservationForm, Menu_ItemForm
 from datetime import datetime, timedelta
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+
+def send_reservation_email(user, reservation, subject_template, email_template):
+    subject = render_to_string(subject_template, {'user': user, 'reservation': reservation})
+    message = render_to_string(email_template, {'user': user, 'reservation': reservation})
+    send_mail(subject.strip(), message, 'your_email@example.com', [user.email], html_message=message)
 
 def get_index(request):
     return render(request, "index.html")
@@ -37,6 +44,8 @@ def make_reservation(request):
             reservation = form.save(commit=False)
             reservation.user = request.user
             reservation.save()
+
+            send_reservation_email(request.user, reservation, 'make_reservation_subject.txt', 'make_reservation_email.html')
             messages.success(request, 'Reservation successfully made!')
             return redirect('reservations_view')
         else:
@@ -56,9 +65,11 @@ def edit_reservation(request, reservation_id):
             print("VALID!!!!!!!!")
             form.save()
             if request.user.is_staff:
+                send_reservation_email(request.user, reservation, 'edit_reservation_subject.txt', 'edit_reservation_email.html')
                 messages.success(request, 'Reservation successfully edited!')
                 return redirect('admin_reservations')
             else:
+                send_reservation_email(request.user, reservation, 'edit_reservation_subject.txt', 'edit_reservation_email.html')
                 messages.success(request, 'Reservation successfully edited!')
                 return redirect('reservations_view')
         else:
@@ -77,9 +88,11 @@ def cancel_reservation(request, reservation_id):
     if request.method == 'POST':
         reservation.delete()
         if request.user.is_staff:
+            send_reservation_email(request.user, reservation, 'cancel_reservation_subject.txt', 'cancel_reservation_email.html')
             messages.success(request, 'Reservation successfully cancelled!')
             return redirect('admin_reservations')
         else:
+            send_reservation_email(request.user, reservation, 'cancel_reservation_subject.txt', 'cancel_reservation_email.html')
             messages.success(request, 'Reservation successfully cancelled!')
             return redirect('reservations_view')
 
