@@ -1,1 +1,1 @@
-web:gunicorn vegan_burgers.wsgi:application
+web:gunicorn vegan_burgers.wsgi
