@@ -1,1 +1,1 @@
-web: gunicorn vegan_burgers.wsgi
+web: gunicorn vegan_burgers.wsgi:application --workers 0
