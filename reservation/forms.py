@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.db.models import Sum
 from django.forms.widgets import DateInput, TimeInput
 from datetime import datetime, time
-from .models import Reservation, Menu_Item
+from .models import Reservation
 from django.contrib import messages
 
 class CustomSignupForm(SignupForm):
@@ -71,8 +71,3 @@ class ReservationForm(forms.ModelForm):
                 raise ValidationError("This reservation exceedes restaurant capacity for that day.")                
         return number_of_guests
 
-
-class Menu_ItemForm(forms.ModelForm):
-    class Meta:
-        model = Menu_Item
-        fields = ['name', 'description', 'category', 'price', 'item_image']
