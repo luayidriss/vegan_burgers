@@ -14,6 +14,8 @@ from pathlib import Path
 import os
 import dj_database_url
 import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from django.contrib.messages import constants as messages
 if os.path.isfile('env.py'):
     import env
@@ -146,6 +148,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+cloudinary.config(
+    cloud_name='dfo9w2bsp',
+    api_key='394333988756531',
+    api_secret='k3evIUL39rv0gumPIo-4PnfT2Qk'
+)
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': "dfo9w2bsp",
