@@ -45,7 +45,7 @@ body {
 footer {
   padding: 1rem 0;
   color: white;
-  height: 30vh;
+  min-height: 30vh;
   background-color: #282828;
 }
 
