@@ -11,106 +11,108 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body class="d-flex flex-column h-100 main-bg">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg custom-nav">
-      <div class="container">
-        <a class="navbar-brand" href="{% url 'get_index' %}">
-          <img src="https://res.cloudinary.com/dfo9w2bsp/image/upload/v1691318674/Vegan%20Burgers/Beesechurgers_favicon_menu_b3sc43.png" alt="Vegan Burgers Logo" class="logo-img">
-        </a>
-    
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 custom-nav">
-            {% if user.is_authenticated%}
-              {% if user.is_authenticated and user.is_staff %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'admin_reservations' %}">Reservations Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'menu_view_admin' %}">Edit Menu</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'menu_view' %}">Menu</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'reservations_view' %}">My Reservations</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
-              </li>
-              {% endif %}
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg custom-nav">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'get_index' %}">
+        <img src="https://res.cloudinary.com/dfo9w2bsp/image/upload/v1691318674/Vegan%20Burgers/Beesechurgers_favicon_menu_b3sc43.png" alt="Vegan Burgers Logo" class="logo-img">
+      </a>
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 custom-nav">
+          {% if user.is_authenticated%}
+            {% if user.is_authenticated and user.is_staff %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'admin_reservations' %}">Reservations Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'menu_view_admin' %}">Edit Menu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+            </li>
             {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'menu_view' %}">Menu</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
+              <a class="nav-link" href="{% url 'reservations_view' %}">My Reservations</a>
             </li>
             <li class="nav-item">
-              <a  href="{% url 'account_signup' %}">
-                <button type="button" class="btn btn-success">Sign Up</button>
-              </a>
+              <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
             </li>
             {% endif %}
-          </ul>
-        </div>
-      </div>
-    </nav>
-<!-- Messages -->
-    <div class="container">
-      <div class="row">
-          <div class="col-md-8 offset-md-2 mt-4">
-              {% for message in messages %}
-              <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
-                  {{ message | safe }}
-                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-              {% endfor %}
-          </div>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'menu_view' %}">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a  href="{% url 'account_signup' %}">
+              <button type="button" class="btn btn-success">Sign Up</button>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
       </div>
     </div>
-    <main class="flex-grow-1 main-bg custom-main">
-            {% block content %}
-            <!-- Content Goes here -->
-            {% endblock content %}
-    </main>
-
-    <!-- Footer -->
-    <footer class="py-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <h4>Location</h4>
-            <p>Vegan Land, Vegan Avenue 3</p>
-          </div>
-          <div class="col-md-4">
-            <h4>Opening Hours</h4>
-            <p>Wednesday & Thursday: 16:00 - 20:30<br>
-              Friday: 13:00 - 20:30<br>
-              Saturday: 13:00 - 20:30<br>
-              Sunday: 13:00 - 20:30<br>
-              Monday & Tuesday: Closed</p>
-          </div>
-          <div class="col-md-4">
-            <h4>Contact</h4>
-            <p>Tel: <span><a href="tel:+3123456789">+312345678</a></span><br>
-              Email: <span><a href="mailto:info@veganburgers.com">info@veganburgers.com</a></span></p>
-          </div>
+  </nav>
+<!-- Messages -->
+{% if messages %}
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mt-4">
+            <div class="alert alert-dismissible fade show" id="msg" role="alert">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                    {{ message | safe }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="row">
-          <div class="col d-flex justify-content-center align-items-center">
-            <p class="text-white">© 2023 Vegan Burgers</p>
-          </div>
+    </div>
+  </div>
+  {% endif %}
+  <main class="flex-grow-1 main-bg custom-main">
+          {% block content %}
+          <!-- Content Goes here -->
+          {% endblock content %}
+  </main>
+  <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Location</h4>
+          <p>Vegan Land, Vegan Avenue 3</p>
+        </div>
+        <div class="col-md-4">
+          <h4>Opening Hours</h4>
+          <p>Wednesday & Thursday: 16:00 - 20:30<br>
+            Friday: 13:00 - 20:30<br>
+            Saturday: 13:00 - 20:30<br>
+            Sunday: 13:00 - 20:30<br>
+            Monday & Tuesday: Closed</p>
+        </div>
+        <div class="col-md-4">
+          <h4>Contact</h4>
+          <p>Tel: <span><a href="tel:+3123456789">+312345678</a></span><br>
+            Email: <span><a href="mailto:info@veganburgers.com">info@veganburgers.com</a></span></p>
         </div>
       </div>
-    </footer>
+      <div class="row">
+        <div class="col d-flex justify-content-center align-items-center">
+          <p class="text-white">© 2023 Vegan Burgers</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

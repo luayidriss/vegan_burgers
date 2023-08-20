@@ -117,3 +117,9 @@ footer {
   color: black;
 }
 
+/* Accordion */
+
+.accordion {
+  display: inline-block;
+  min-width: 50vw;
+}
