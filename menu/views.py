@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from .models import Menu_Item
 from .forms import Menu_ItemForm
 from django.contrib import messages
+from cloudinary.uploader import upload
 
 def menu_view(request):
     menu_items_by_category = {}
@@ -36,7 +37,7 @@ def menu_view_admin(request):
 def add_menu_item(request):
     form = Menu_ItemForm()
     if request.method == 'POST':
-        form = Menu_ItemForm(request.POST)
+        form = Menu_ItemForm(request.POST, request.FILES)
         if form.is_valid():
             menu_item = form.save(commit=False)
             menu_item.save()
@@ -50,7 +51,7 @@ def edit_menu(request, menu_item_id):
     menu_item = get_object_or_404(Menu_Item, id=menu_item_id)
 
     if request.method == 'POST':
-        form = Menu_ItemForm(request.POST, instance=menu_item)
+        form = Menu_ItemForm(request.POST, request.FILES, instance=menu_item)
         if form.is_valid():
             form.save()
             messages.success(request, 'Menu Item successfully edited!')
