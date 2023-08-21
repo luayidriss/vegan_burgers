@@ -17,9 +17,15 @@ def get_index(request):
     return render(request, "index.html")
 
 def reservations_view(request):
-    reservations = Reservation.objects.filter(user=request.user)
+    now = datetime.now()
+    all_reservations = Reservation.objects.filter(user=request.user)
+    previous_reservations = all_reservations.filter(date__lt=now)
+    upcoming_reservations = all_reservations.filter(date__gte=now)
+
     context = {
-        'reservations': reservations,
+        'all_reservations': all_reservations,
+        'previous_reservations': previous_reservations,
+        'upcoming_reservations': upcoming_reservations,
     }
     return render(request, 'reservations.html', context)
 
