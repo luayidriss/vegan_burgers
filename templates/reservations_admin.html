@@ -35,7 +35,7 @@
                                     <td>{{ reservation.guests }}</td>
                                     {% if category == "Upcoming" %}
                                     <td colspan="2">
-                                        <a href="{% url 'edit_reservation' reservation.id %}" class="btn btn-primary">Edit</a>
+                                        <a href="{% url 'reservation:edit_reservation' reservation.id %}" class="btn btn-primary">Edit</a>
                                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelModal{{ reservation.id }}">Cancel</button>
                                     </td>
                                     {% endif %}
@@ -52,7 +52,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form method="post" action="{% url 'cancel_reservation' reservation.id %}">
+                                        <form method="post" action="{% url 'reservation:cancel_reservation' reservation.id %}">
                                             {% csrf_token %}
                                             <p>Are you sure you want to cancel this reservation?</p>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

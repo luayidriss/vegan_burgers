@@ -28,20 +28,20 @@
           {% if user.is_authenticated%}
             {% if user.is_authenticated and user.is_staff %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'admin_reservations' %}">Reservations Dashboard</a>
+              <a class="nav-link" href="{% url 'reservation:admin_reservations' %}">Reservations Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'menu_view_admin' %}">Edit Menu</a>
+              <a class="nav-link" href="{% url 'menu:menu_view_admin' %}">Edit Menu</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'menu_view' %}">Menu</a>
+              <a class="nav-link" href="{% url 'menu:menu_view' %}">Menu</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'reservations_view' %}">My Reservations</a>
+              <a class="nav-link" href="{% url 'reservation:reservations_view' %}">My Reservations</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
@@ -49,7 +49,7 @@
             {% endif %}
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'menu_view' %}">Menu</a>
+            <a class="nav-link" href="{% url 'menu:menu_view' %}">Menu</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>

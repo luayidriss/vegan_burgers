@@ -35,7 +35,7 @@
                                             <img class="menu-itm-img" src="{{ item.item_image.url }}" alt="{{ item.name }}">
                                         </td>
                                         <td colspan="2">
-                                            <a href= "{% url 'edit_menu' item.id %}" class="btn btn-primary">Edit</a>
+                                            <a href= "{% url 'menu:edit_menu' item.id %}" class="btn btn-primary">Edit</a>
                                             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ item.id }}">Delete</button>
                                         </td>
                                     </tr>
@@ -48,7 +48,7 @@
                 {% endfor %}
             </div>
             <div class="text-center">
-                <a href= "{% url 'add_menu_item' %}" class="btn btn-success">Add Menu Item</a>
+                <a href= "{% url 'menu:add_menu_item' %}" class="btn btn-success">Add Menu Item</a>
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{% url 'delete_menu' item.id %}">
+                <form method="post" action="{% url 'menu:delete_menu' item.id %}">
                     {% csrf_token %}
                     <p>Are you sure you want to delete this menu item?</p>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
