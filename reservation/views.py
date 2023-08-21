@@ -48,14 +48,13 @@ def edit_reservation(request, reservation_id):
     if request.method == 'POST':
         form = ReservationForm(request.POST, instance=reservation)
         if form.is_valid():
-            print("VALID!!!!!!!!")
             form.save()
             if request.user.is_staff:
-                send_reservation_email(request.user, reservation, 'edit_reservation_subject.txt', 'edit_reservation_email.html')
+                send_reservation_email(reservation.user, reservation, 'edit_reservation_subject.txt', 'edit_reservation_email.html')
                 messages.success(request, 'Reservation successfully edited!')
                 return redirect('admin_reservations')
             else:
-                send_reservation_email(request.user, reservation, 'edit_reservation_subject.txt', 'edit_reservation_email.html')
+                send_reservation_email(reservation.user, reservation, 'edit_reservation_subject.txt', 'edit_reservation_email.html')
                 messages.success(request, 'Reservation successfully edited!')
                 return redirect('reservations_view')
         else:
@@ -74,11 +73,11 @@ def cancel_reservation(request, reservation_id):
     if request.method == 'POST':
         reservation.delete()
         if request.user.is_staff:
-            send_reservation_email(request.user, reservation, 'cancel_reservation_subject.txt', 'cancel_reservation_email.html')
+            send_reservation_email(reservation.user, reservation, 'cancel_reservation_subject.txt', 'cancel_reservation_email.html')
             messages.success(request, 'Reservation successfully cancelled!')
             return redirect('admin_reservations')
         else:
-            send_reservation_email(request.user, reservation, 'cancel_reservation_subject.txt', 'cancel_reservation_email.html')
+            send_reservation_email(reservation.user, reservation, 'cancel_reservation_subject.txt', 'cancel_reservation_email.html')
             messages.success(request, 'Reservation successfully cancelled!')
             return redirect('reservations_view')
 
