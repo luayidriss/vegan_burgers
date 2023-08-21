@@ -62,9 +62,9 @@ class ReservationForm(forms.ModelForm):
     def clean_guests(self):
         number_of_guests = self.cleaned_data.get('guests')
         date = self.cleaned_data.get('date')
-
+        instance = self.instance
         if number_of_guests and date is not None:
-            total_guests = Reservation.objects.filter(date=date).aggregate(Sum('guests'))['guests__sum'] or 0
+            total_guests = Reservation.objects.filter(date=date).exclude(id=instance.id).aggregate(Sum('guests'))['guests__sum'] or 0
             restaurant_capacity = 40
 
             if total_guests + number_of_guests > restaurant_capacity:
