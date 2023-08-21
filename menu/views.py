@@ -42,7 +42,7 @@ def add_menu_item(request):
             menu_item = form.save(commit=False)
             menu_item.save()
             messages.success(request, 'Menu Item successfully added!')
-            return redirect('menu_view_admin')
+            return redirect('menu:menu_view_admin')
 
     context = {'form': form}
     return render(request, 'add_menu.html', context)
@@ -55,7 +55,7 @@ def edit_menu(request, menu_item_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Menu Item successfully edited!')
-            return redirect('menu_view_admin')
+            return redirect('menu:menu_view_admin')
 
     else:
         form = Menu_ItemForm(instance=menu_item)
@@ -69,6 +69,6 @@ def delete_menu(request, menu_item_id):
     if request.method == 'POST':
         menu_item.delete()
         messages.success(request, 'Menu Item successfully deleted!')
-        return redirect('menu_view_admin')
+        return redirect('menu:menu_view_admin')
 
     return redirect('menu_view_admin')

@@ -39,7 +39,7 @@ def make_reservation(request):
 
             send_reservation_email(request.user, reservation, 'make_reservation_subject.txt', 'make_reservation_email.html')
             messages.success(request, 'Reservation successfully made!')
-            return redirect('reservations_view')
+            return redirect('reservation:reservations_view')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
@@ -58,11 +58,11 @@ def edit_reservation(request, reservation_id):
             if request.user.is_staff:
                 send_reservation_email(reservation.user, reservation, 'edit_reservation_subject.txt', 'edit_reservation_email.html')
                 messages.success(request, 'Reservation successfully edited!')
-                return redirect('admin_reservations')
+                return redirect('reservation:admin_reservations')
             else:
                 send_reservation_email(reservation.user, reservation, 'edit_reservation_subject.txt', 'edit_reservation_email.html')
                 messages.success(request, 'Reservation successfully edited!')
-                return redirect('reservations_view')
+                return redirect('reservation:reservations_view')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
@@ -81,16 +81,16 @@ def cancel_reservation(request, reservation_id):
         if request.user.is_staff:
             send_reservation_email(reservation.user, reservation, 'cancel_reservation_subject.txt', 'cancel_reservation_email.html')
             messages.success(request, 'Reservation successfully cancelled!')
-            return redirect('admin_reservations')
+            return redirect('reservation:admin_reservations')
         else:
             send_reservation_email(reservation.user, reservation, 'cancel_reservation_subject.txt', 'cancel_reservation_email.html')
             messages.success(request, 'Reservation successfully cancelled!')
-            return redirect('reservations_view')
+            return redirect('reservation:reservations_view')
 
     if request.user.is_staff:
-        return redirect('admin_reservations')
+        return redirect('reservation:admin_reservations')
     else:
-        return redirect('reservations_view')
+        return redirect('reservation:reservations_view')
 
 def admin_reservations(request):
     now = datetime.now()
