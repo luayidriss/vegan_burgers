@@ -32,7 +32,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '8000-luayidriss-veganburgers-c5a6nn0qx7h.ws-eu104.gitpod.io',
@@ -150,15 +150,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 cloudinary.config(
-    cloud_name='dfo9w2bsp',
-    api_key='394333988756531',
-    api_secret='k3evIUL39rv0gumPIo-4PnfT2Qk'
+    cloud_name=os.environ.get("Cloud_Name"),
+    api_key=os.environ.get("Api_Key"),
+    api_secret=os.environ.get("Api_Secret")
 )
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': "dfo9w2bsp",
-    'API_KEY': "394333988756531",
-    'API_SECRET': "k3evIUL39rv0gumPIo-4PnfT2Qk",
+    'CLOUD_NAME': os.environ.get("Cloud_Name"),
+    'API_KEY': os.environ.get("Api_Key"),
+    'API_SECRET': os.environ.get("Api_Secret"),
 }
 
 STATIC_URL = '/static/'
