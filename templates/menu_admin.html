@@ -22,8 +22,7 @@
                                         <th>Description</th>
                                         <th>Price</th>
                                         <th>Image</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th colspan="2">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,10 +34,8 @@
                                         <td>
                                             <img class="menu-itm-img" src="{{ item.item_image.url }}" alt="{{ item.name }}">
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <a href= "{% url 'edit_menu' item.id %}" class="btn btn-primary">Edit</a>
-                                        </td>
-                                        <td>
                                             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ item.id }}">Delete</button>
                                         </td>
                                     </tr>
