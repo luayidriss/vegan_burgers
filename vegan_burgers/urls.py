@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from reservation.views import get_index
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', get_index, name="get_index"),
