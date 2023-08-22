@@ -1,6 +1,6 @@
 # Vegan Burgers Website
 
-![Website Screenshot](link-to-image)
+![Home Page](documentation/features/home.png)
 
 ## About
 
@@ -60,25 +60,52 @@ The target audience of the Vegan Burgers website includes vegans, vegetarians, a
 
 The home page welcomes users with an enticing display of our main seller (Vegan Burgers) and encourages them to explore the menu or make a reservation.
 
+![Home Page ](documentation/features/home.png)
+
 ### Make Reservation
 
 Users can effortlessly book a table for their desired date time and guest number, providing a seamless reservation experience.
+
+![Make Reservation](documentation/features/make_reservation.png)
+
+### Edit and Cancel Reservation
+
+Users can reschedule their reservation or cancel it altogether.
+
+![Edit Reservation](documentation/features/edit reservation.png)
+
+![Cancel Reservation](documentation/features/cancel reservation.png)
 
 ### Reservations View
 
 Users can view their upcoming and past reservations. They can also edit or cancel reservations as needed.
 
+![View Reservation](documentation/features/reservations.png)
+
 ### View Menu
 
 The menu page showcases a variety of menu item options, put in four different menu categories.
+
+![View Menu](documentation/features/menu view.png)
 
 ### Admin Reservation Dashboard
 
 Restaurant staff have access to a dedicated dashboard that allows them to manage reservations efficiently.
 
+![Admin Reservation](documentation/features/Admin Reservations.png)
+
+![Admin Reservation](documentation/features/admin reservation2.png)
+
 ### Add, Edit, and Delete Menu Items
 
 Admins can add new menu items, modify existing ones, or remove items that are no longer offered.
+
+![Add Menu Item](documentation/features/add menu.png)
+
+![Edit Menu Item](documentation/features/edit menu.png)
+
+![Delete Menu Item](documentation/features/delete menu.png)
+
 
 ## Future Improvements
 
@@ -105,6 +132,8 @@ Here is the [initial wireframe](https://app.visily.ai/projects/9f0e1a72-8817-4de
 The database was created on PostgreSQL.
 
 #### Data Modelling
+
+![Database Schema](documentation/database/Database Schema.png)
 
 ##### Reservation Model
 

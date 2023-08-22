@@ -36,8 +36,8 @@
                     {% endfor %}
                 </tbody>
             </table>
-            
-            {% for reservation in reservations %}
+
+            {% for reservation in all_reservations %}
             <div class="modal fade" id="cancelModal{{ reservation.id }}" tabindex="-1" aria-labelledby="cancelModalLabel{{ reservation.id }}" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -60,7 +60,7 @@
             {% else %}
             <p>You have no reservations yet.</p>
             {% endif %}
-            <a href="{% url 'make_reservation' %}" class="btn btn-success">Make a Reservation</a>
+            <a href="{% url 'reservation:make_reservation' %}" class="btn btn-success">Make a Reservation</a>
         </div>
     </div>
 </div>
