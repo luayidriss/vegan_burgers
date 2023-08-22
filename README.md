@@ -163,7 +163,7 @@ The user model was then migrated to PostgreSQL.
 ## Deployment and Acknowledgments
 
 ### Deployment and Testing
-The app was deployed to Heroku. Please refer to the TESTING.md file for manual, automatic and validation documentation.
+The app was deployed to Heroku. Please refer to the TESTING.md file for manual and validation documentation.
 
 ### Acknowledgements
 I would like to thank my Mentor, Alex Konovalov, for his detail oriented work and his consistent support. 
