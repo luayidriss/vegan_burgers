@@ -96,7 +96,7 @@ The application's design draws inspiration from Material Design principles, prio
 
 ### Wireframes
 
-
+Here is the [initial wireframe](https://app.visily.ai/projects/9f0e1a72-8817-4de8-ae91-0b7354b33088/boards/522417) created on Visiliy.ai.
 
 ## Information Architecture
 
