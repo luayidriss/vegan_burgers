@@ -35,7 +35,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '8000-luayidriss-veganburgers-c5a6nn0qx7h.ws-eu104.gitpod.io',
+    '8000-luayidriss-veganburgers-pew8pbf4cf3.ws-eu104.gitpod.io',
     'vegan-burgers-aa8f7e859300.herokuapp.com',
 ]
 
