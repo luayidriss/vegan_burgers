@@ -18,7 +18,8 @@ class Menu_Item(models.Model):
     description = models.CharField(max_length=300)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default=BURGERS)
-    item_image = CloudinaryField('image', default='placeholder')
+    item_image = CloudinaryField('image', default='menu_item_images/placeholder')
+
 
     def __str__(self):
         return f"{self.name} - {self.description} - {self.price}"
