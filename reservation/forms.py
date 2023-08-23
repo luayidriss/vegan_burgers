@@ -18,6 +18,7 @@ class CustomSignupForm(SignupForm):
         self.fields['password1'].widget.attrs['placeholder'] = ''
         self.fields['password2'].widget.attrs['placeholder'] = ''
 
+
     def save(self, request):
         user = super().save(request)
         return user
@@ -27,16 +28,19 @@ class ReservationForm(forms.ModelForm):
         model = Reservation
         fields = ['date', 'time', 'guests']
         widgets = {
-            'date': DateInput(attrs={'type': 'date'}),
-            'time': TimeInput(attrs={'type': 'time'}),
-        }
-    
+            'date': DateInput(attrs = {'type': 'date'}),
+            'time': TimeInput(attrs = {'type': 'time'}),
+     }
+
+
     def clean_date(self):
         date = self.cleaned_data.get('date')
         if date < datetime.now().date():
             raise ValidationError("Reservation date must be in the future.")
         return date
-        
+      
+
+
     def clean_time(self):
         time_value = self.cleaned_data.get('time')
         date = self.cleaned_data.get('date')
@@ -58,6 +62,7 @@ class ReservationForm(forms.ModelForm):
             if not (opening_time_weekends <= time_value <= closing_time_weekends):
                 raise ValidationError("Reservation time must be within working hours.")
         return time_value
+
 
     def clean_guests(self):
         number_of_guests = self.cleaned_data.get('guests')

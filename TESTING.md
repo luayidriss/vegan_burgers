@@ -33,3 +33,25 @@ Usability was tested with the below user acceptance testing, sent to new users t
 | As a site administrator, I can edit menu items to allow for changes in the description and pricing. | Successfully editing an existing menu item | Yes             |
 | As a site administrator, I can delete a menu item to keep my online menu up to date. | Successfully deleting an existing menu item | Yes             |
 | As a site administrator, I can view and edit all reservations on a given day for table preparation. | Accessing admin reservations page for management | Yes             |
+
+## Validation
+
+### HTML Validation:
+
+- HTML validation was done by using the official [W3C](https://validator.w3.org/) validator. This checking was done manually by copying the view page url and pasting it into the validator.
+
+- [Full HTML Validation Report](documentation/validation/html)
+
+- There were only errors around using a table heading with a colspan of 2, these are standard html tags however.
+
+### CSS Validation:
+
+- [Full CSS Validation Report](documentation/validation/css_validator.png)
+
+- No errors or warnings were found when passing through the official [W3C (Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_uri) validator.
+
+
+### Python Validation:
+- [Full Python Validation Report](documentation/validation/python)
+
+- No errors were found when the code was passed through this python checker [online validation tool](https://www.pythonchecker.com/). According to the reports, the code is [Pep 8-compliant](https://legacy.python.org/dev/peps/pep-0008/). This checking was done manually by copying python code from all the files and pasting it into the validator. Only errors were that forward slashes needed white spaces even though it is a url. As well as long python code.
