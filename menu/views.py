@@ -10,7 +10,7 @@ from cloudinary.uploader import upload
 def menu_view(request):
     menu_items_by_category = {}
 
-    menu_items = Menu_Item.objects.all()
+    menu_items = MenuItem.objects.all()
 
     for category, _ in MenuItem.CATEGORY_CHOICES:
         items = menu_items.filter(category = category)
@@ -55,7 +55,7 @@ def edit_menu(request, menu_item_id):
     menu_item = get_object_or_404(MenuItem, id = menu_item_id)
 
     if request.method == 'POST':
-        form = Menu_ItemForm(request.POST, request.FILES, instance = menu_item)
+        form = MenuItemForm(request.POST, request.FILES, instance = menu_item)
         if form.is_valid():
             form.save()
             messages.success(request, 'Menu Item successfully edited!')
